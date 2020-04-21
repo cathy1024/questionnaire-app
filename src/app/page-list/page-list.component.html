@@ -1,13 +1,21 @@
 <div class="container">
-    <h2 class="h2">问卷列表</h2>
+    <header class="header clearfix">
+        <h3 class="h3">问卷管理</h3>
+        <button type="button" class="btn btn-success btn-add">添加问卷</button>
+    </header>
     <section>
-        <ul class="list-group">
-            <li *ngFor="let item of listData" class="list-group-item">
+            <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">问卷列表</li>
+            </ol>
+            </nav>
+        <div class="list-group">
+            <a *ngFor="let item of listData" [routerLink]="['/edit', item.id]" class="list-group-item">
                 <div class="row">
                     <div class="col-sm-8">{{item.title}}</div>
                     <div class="col-sm-4"></div>
                 </div>
-            </li>
-        </ul>
+            </a>
+        </div>
     </section>
 </div>

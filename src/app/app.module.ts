@@ -6,15 +6,19 @@ import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { PageListComponent } from './page-list/page-list.component';
+import { PageEditComponent } from './page-edit/page-edit.component';
+import { PageEditModule } from './page-edit/page-edit.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageListComponent
+    PageListComponent,
+    PageEditComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
+    PageEditModule,
     AppRoutingModule
   ],
   providers: [],

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PageListComponent } from './page-list/page-list.component';
+// import { PageEditComponent } from './page-edit/page-edit.component';
 
 const appRoutes: Routes = [
     {
@@ -9,7 +10,10 @@ const appRoutes: Routes = [
     },
     {
         path: 'list', component: PageListComponent
-    }
+    },
+    // {
+    //     path: 'edit/:id', component: PageEditComponent
+    // }
 ]
 
 @NgModule({
