@@ -1,0 +1,13 @@
+<div class="container">
+    <h2 class="h2">问卷列表</h2>
+    <section>
+        <ul class="list-group">
+            <li *ngFor="let item of listData" class="list-group-item">
+                <div class="row">
+                    <div class="col-sm-8">{{item.title}}</div>
+                    <div class="col-sm-4"></div>
+                </div>
+            </li>
+        </ul>
+    </section>
+</div>
