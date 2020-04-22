@@ -7,9 +7,10 @@ import { StylesComponent } from './styles/styles.component';
 import { SettingComponent } from './setting/setting.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SubSidebarComponent } from './components/sub-sidebar/sub-sidebar.component';
+import { QstBoardComponent } from './qst-board/qst-board.component';
 
 @NgModule({
-  declarations: [ItemsComponent, StylesComponent, SettingComponent, SidebarComponent, SubSidebarComponent],
+  declarations: [ItemsComponent, StylesComponent, SettingComponent, SidebarComponent, SubSidebarComponent, QstBoardComponent],
   imports: [
     CommonModule,
     PageEditRoutingModule

@@ -1,0 +1,32 @@
+{
+    "data": [
+        {
+            "title": "客户调研企业端",
+            "id": 1,
+            "QuestionnaireId": 272,
+            "CreateDate": "2020-03-30 10:18",
+            "UpdateDate": "2020-03-30 10:21",
+            "IsLocked": true,
+            "IsPublic": false,
+            "IsClosed": false,
+            "QuestionnaireType": 2,
+            "IsShowGreeting": false,
+            "IsAdminTop": true,
+            "IsTop": true
+        },
+        {
+            "title": "肯耐珂萨招聘服务 客户调研-企业端_20191204130318",
+            "id": 2,
+            "QuestionnaireId": 272,
+            "CreateDate": "2020-03-30 10:18",
+            "UpdateDate": "2020-03-30 10:21",
+            "IsLocked": true,
+            "IsPublic": false,
+            "IsClosed": false,
+            "QuestionnaireType": 2,
+            "IsShowGreeting": false,
+            "IsAdminTop": true,
+            "IsTop": true
+        }
+    ]
+}

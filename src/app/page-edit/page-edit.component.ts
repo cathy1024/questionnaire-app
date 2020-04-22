@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+
+import { EditService } from './edit.service';
 
 @Component({
   selector: 'app-page-edit',
@@ -9,16 +11,37 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./page-edit.component.less']
 })
 export class PageEditComponent implements OnInit {
-  id:number;
+  id;
+  questionnaire;
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private editService: EditService
   ) {}
 
   ngOnInit(): void {
-    this.route.queryParams
-      .subscribe((params) => {
-        console.log(params);
+    // this.id = this.route.snapshot.params['id'];
+    // console.log('id', this.id);
+    this.route.paramMap.pipe(
+      switchMap(params => {
+        return of(params.get('id'))
       })
+    ).subscribe((data) => {
+      console.log('id', data)
+      this.id = data;
+      this.getData(this.id);
+    })
+  }
+
+  // 获取问卷数据
+  getData(id) {
+    this.editService.getData().subscribe((res) => {
+      const data = res.data;
+      let questionnaire = data.filter((item) => {
+        return item.id == id;
+      })
+      this.questionnaire = questionnaire;
+      console.log(questionnaire);
+    })
   }
 }

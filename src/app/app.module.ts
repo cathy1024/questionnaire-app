@@ -8,12 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { PageListComponent } from './page-list/page-list.component';
 import { PageEditComponent } from './page-edit/page-edit.component';
 import { PageEditModule } from './page-edit/page-edit.module';
+import { PageViewComponent } from './page-view/page-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageListComponent,
-    PageEditComponent
+    PageEditComponent,
+    PageViewComponent
   ],
   imports: [
     HttpClientModule,
