@@ -8,13 +8,9 @@ import { SettingComponent } from './setting/setting.component';
 
 const routes: Routes = [
   {
-    path: 'edit/:id',
+    path: 'edit',
     component: PageEditComponent,
     children: [
-      {
-        path: '',
-        component: ItemsComponent
-      },
       {
         path: 'items',
         component: ItemsComponent
@@ -26,7 +22,12 @@ const routes: Routes = [
       {
         path: 'setting',
         component: SettingComponent
-      }
+      },
+      {
+        path: '',
+        redirectTo: 'items',
+        pathMatch: 'full'
+      },
     ]
   }
 ];

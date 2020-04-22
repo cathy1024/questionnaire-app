@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router'
 import { ListService } from './list.service';
-import { Question } from '../question'
+import { Question } from '../question';
 
 @Component({
   selector: 'app-page-list',
@@ -10,7 +11,10 @@ import { Question } from '../question'
 export class PageListComponent implements OnInit {
   listData: Question[];
 
-  constructor(private listService: ListService) { }
+  constructor(
+    private router: Router,
+    private listService: ListService
+  ) { }
 
   ngOnInit(): void {
     this.getListData();
@@ -21,6 +25,11 @@ export class PageListComponent implements OnInit {
     this.listService.getListData().subscribe((res) => {
       this.listData = res.list;
     })
+  }
+
+  // 跳转到问卷编辑
+  gotoEdit (id) {
+    this.router.navigate(['/edit', { id: id }]);
   }
 
 }

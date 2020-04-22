@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import QuestionType from './questionType.config'
 
 @Component({
   selector: 'app-items',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./items.component.less']
 })
 export class ItemsComponent implements OnInit {
-
+  questionType = QuestionType
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

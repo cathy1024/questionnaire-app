@@ -1,7 +1,7 @@
 <div class="container">
     <header class="header clearfix">
         <h3 class="h3">问卷管理</h3>
-        <button type="button" class="btn btn-success btn-add">添加问卷</button>
+        <button type="button" class="btn btn-success btn-add" routerLink="edit">添加问卷</button>
     </header>
     <section>
             <nav aria-label="breadcrumb">
@@ -10,7 +10,7 @@
             </ol>
             </nav>
         <div class="list-group">
-            <a *ngFor="let item of listData" [routerLink]="['/edit', item.id]" class="list-group-item">
+            <a *ngFor="let item of listData" (click)="gotoEdit(item.id)" class="list-group-item">
                 <div class="row">
                     <div class="col-sm-8">{{item.title}}</div>
                     <div class="col-sm-4"></div>

@@ -6,9 +6,10 @@ import { ItemsComponent } from './items/items.component';
 import { StylesComponent } from './styles/styles.component';
 import { SettingComponent } from './setting/setting.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SubSidebarComponent } from './components/sub-sidebar/sub-sidebar.component';
 
 @NgModule({
-  declarations: [ItemsComponent, StylesComponent, SettingComponent, SidebarComponent],
+  declarations: [ItemsComponent, StylesComponent, SettingComponent, SidebarComponent, SubSidebarComponent],
   imports: [
     CommonModule,
     PageEditRoutingModule
