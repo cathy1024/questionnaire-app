@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 import { EditService } from './edit.service';
+import { Questionnaire } from '../QuestionType';
 
 @Component({
   selector: 'app-page-edit',
@@ -12,7 +13,7 @@ import { EditService } from './edit.service';
 })
 export class PageEditComponent implements OnInit {
   id;
-  questionnaire;
+  questionnaire: Questionnaire;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -28,8 +29,13 @@ export class PageEditComponent implements OnInit {
       })
     ).subscribe((data) => {
       console.log('id', data)
-      this.id = data;
-      this.getData(this.id);
+      if (data) {
+        this.id = data;
+        this.getData(this.id);
+      } else {
+        // 创建一个新的问卷
+        this.questionnaire = this.createData();
+      }
     })
   }
 
@@ -43,5 +49,19 @@ export class PageEditComponent implements OnInit {
       this.questionnaire = questionnaire;
       console.log(questionnaire);
     })
+  }
+
+  // 创建新问卷
+  createData() {
+    const createDate = new Date(); 
+    let dataObj: Questionnaire = {
+      title: '',
+      describe: '',
+      id: 0,
+      createDate: createDate,
+      isShowGreeting: true,
+      isTop: false
+    }
+    return dataObj;
   }
 }

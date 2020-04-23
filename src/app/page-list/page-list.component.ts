@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 import { ListService } from './list.service';
-import { Question } from '../question';
+import { Questionnaire } from '../QuestionType';
 
 @Component({
   selector: 'app-page-list',
@@ -9,7 +9,7 @@ import { Question } from '../question';
   styleUrls: ['./page-list.component.less']
 })
 export class PageListComponent implements OnInit {
-  listData: Question[];
+  listData: Questionnaire[];
 
   constructor(
     private router: Router,

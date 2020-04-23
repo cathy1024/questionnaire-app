@@ -8,10 +8,16 @@ import QuestionType from './questionType.config'
 })
 export class ItemsComponent implements OnInit {
   questionType = QuestionType
+  qstList = [];
   constructor() { }
 
   ngOnInit(): void {
 
+  }
+
+  getSubSidebar (e) {
+    console.log(e);
+    this.qstList.push(e);
   }
 
 }

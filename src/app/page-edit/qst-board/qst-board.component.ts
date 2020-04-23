@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Question } from '../../QuestionType'
 
 @Component({
   selector: 'qst-board',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./qst-board.component.less']
 })
 export class QstBoardComponent implements OnInit {
-
+  @Input() qstList: Question;
   constructor() { }
 
   ngOnInit(): void {

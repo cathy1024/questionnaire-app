@@ -1,10 +1,20 @@
-<div>
+<div class="qst-board">
     <!-- 页眉 -->
     <div class="qst-header"></div>
 
     <!-- 中间 -->
     <div class="qst-main">
-        
+        <div class="qst-main__hd">
+            <div class="qst-title">问卷标题</div>
+            <div class="qst-desc">问卷描述</div>
+        </div>
+        <div class="qst-main__bd">
+            <div class="qst-list">
+                <div class="qst-item" *ngFor="let item of qstList">
+                    {{item.name}}
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- 页脚 -->

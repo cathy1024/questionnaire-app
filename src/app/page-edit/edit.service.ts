@@ -14,4 +14,10 @@ export class EditService {
     let url = 'assets/mockData/data.json';
     return this.http.get(url, params);
   }
+
+  // 创建题目
+  createQuestionItem(params): Observable<any> {
+    let itemObj = params;
+    return itemObj;
+  }
 }
