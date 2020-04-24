@@ -1,12 +1,3 @@
-export interface Questionnaire {
-    title: string;
-    describe: string;
-    id: number;
-    createDate: Date;
-    isShowGreeting: boolean;
-    isTop: boolean;
-}
-
 export interface Option {
     optionId: number;
     optionContent: string;
@@ -19,4 +10,14 @@ export interface Question {
     score: number;
     mustFill: boolean;
     options: Option[];
+}
+export interface Questionnaire {
+    title: string;
+    describe: string;
+    id: number;
+    createDate: Date;
+    isLocked: boolean;
+    isShowGreeting: boolean;
+    isTop: boolean;
+    questionList: Question[];
 }

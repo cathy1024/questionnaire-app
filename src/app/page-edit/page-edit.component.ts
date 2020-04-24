@@ -53,14 +53,15 @@ export class PageEditComponent implements OnInit {
 
   // 创建新问卷
   createData() {
-    const createDate = new Date(); 
     let dataObj: Questionnaire = {
-      title: '',
-      describe: '',
+      title: "问卷名称",
+      describe: '问卷描述',
       id: 0,
-      createDate: createDate,
-      isShowGreeting: true,
-      isTop: false
+      createDate: new Date(),
+      isLocked: true,
+      isShowGreeting: false,
+      isTop: true,
+      questionList: []
     }
     return dataObj;
   }
