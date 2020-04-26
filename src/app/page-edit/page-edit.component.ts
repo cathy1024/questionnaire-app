@@ -35,6 +35,9 @@ export class PageEditComponent implements OnInit {
       } else {
         // 创建一个新的问卷
         this.questionnaire = this.createData();
+        let questionnaireList = this.editService.storageService.get('questionnaireList');
+        questionnaireList.push(this.questionnaire);
+        this.editService.storageService.set('questionnaireList', questionnaireList);
       }
     })
   }
@@ -53,10 +56,11 @@ export class PageEditComponent implements OnInit {
 
   // 创建新问卷
   createData() {
+    const id = this.editService.getMaxId();
     let dataObj: Questionnaire = {
-      title: "问卷名称",
-      describe: '问卷描述',
-      id: 0,
+      title: "问卷名称id",
+      describe: '问卷描述id',
+      id: id,
       createDate: new Date(),
       isLocked: true,
       isShowGreeting: false,

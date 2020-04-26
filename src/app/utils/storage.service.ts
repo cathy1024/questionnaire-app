@@ -12,7 +12,13 @@ export class StorageService {
     this.localStorage = localStorage;
    }
 
-  set(key, value) {
-    this.localStorage
+  set(key: string, value: any[]) {
+    localStorage.setItem(key, JSON.stringify(value)); // 序列化
+  }
+  get(key: string) {
+    return JSON.parse(localStorage.getItem(key)); // 反序列化
+  }
+  remove(key: string) {
+    localStorage.removeItem(key);
   }
 }

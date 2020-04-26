@@ -22,9 +22,7 @@ export class PageListComponent implements OnInit {
 
   // 获取列表数据
   getListData () {
-    this.listService.getListData().subscribe((res) => {
-      this.listData = res.list;
-    })
+    this.listData = this.listService.getDefaultData()
   }
 
   // 跳转到问卷编辑
