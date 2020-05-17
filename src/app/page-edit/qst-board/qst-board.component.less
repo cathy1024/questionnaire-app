@@ -2,4 +2,65 @@
     background-color: white;
     height: 100%;
     padding: 20px;
+    .qst-main__hd {
+        margin-bottom: 15px;
+        .qst-name {
+            margin-bottom: 15px;
+            input {
+                border: 1px solid transparent;
+                border-radius: 5px;
+                padding: 5px 10px;
+                display: block;
+                width: 100%;
+                text-align: center;
+                font-weight: bold;
+                font-size: 16px;
+                &:focus {
+                    box-shadow: 0 0 6px 1px rgba(125, 125, 125, 0.3);
+                    border-color: #28a745;
+                }
+            }
+        }
+        .qst-desc {
+            textarea {
+                border: 1px solid transparent;
+                border-radius: 5px;
+                padding: 5px 10px;
+                display: block;
+                width: 100%;
+                text-align: center;
+                font-size: 14px;
+                &:focus {
+                    box-shadow: 0 0 6px 1px rgba(125, 125, 125, 0.3);
+                    border-color: #28a745;
+                }
+            }
+        }
+    }
+    .qst-item {
+        border: 2px solid transparent;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        position: relative;
+        &:hover {
+            box-shadow: 0 0 6px 1px rgba(125, 125, 125, 0.3);
+        }
+        &.active {
+            box-shadow: 0 0 6px 1px rgba(125, 125, 125, 0.3);
+            border-color: #28a745;
+        }
+        .span-del {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            visibility: hidden;
+        }
+        &:hover, &.active {
+            .span-del {
+                visibility: visible;
+            }
+        }
+    }
 }

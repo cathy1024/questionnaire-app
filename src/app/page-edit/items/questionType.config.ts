@@ -1,4 +1,4 @@
-const QuestionType =  [
+export const QuestionType =  [
     {
         name: '单选题',
         id: 1
@@ -18,10 +18,6 @@ const QuestionType =  [
     {
         name: '描述说明',
         id: 5
-    },
-    {
-        name: '分页符',
-        id: 15
     },
     {
         name: '排序题',
@@ -65,4 +61,13 @@ const QuestionType =  [
     }
 ]
 
-export default QuestionType;
+export const defaultOptions = [
+    {
+        optionId: 1,
+        optionContent: '选项1'
+    },
+    {
+        optionId: 2,
+        optionContent: '选项2'
+    }
+]

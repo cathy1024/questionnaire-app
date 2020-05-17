@@ -28,7 +28,6 @@ export class PageEditComponent implements OnInit {
         return of(params.get('id'))
       })
     ).subscribe((data) => {
-      console.log('id', data)
       if (data) {
         this.id = data;
         this.getData(this.id);
@@ -36,6 +35,7 @@ export class PageEditComponent implements OnInit {
         // 创建一个新的问卷
         this.questionnaire = this.createData();
         let questionnaireList = this.editService.storageService.get('questionnaireList');
+        questionnaireList = questionnaireList ? questionnaireList : [];
         questionnaireList.push(this.questionnaire);
         this.editService.storageService.set('questionnaireList', questionnaireList);
       }
@@ -50,7 +50,6 @@ export class PageEditComponent implements OnInit {
         return item.id == id;
       })
       this.questionnaire = questionnaire;
-      console.log(questionnaire);
     })
   }
 

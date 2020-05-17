@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PageListComponent } from './page-list/page-list.component';
 import { PageViewComponent } from './page-view/page-view.component';
 
+
 const appRoutes: Routes = [
     {
         path: '', redirectTo: '/list', pathMatch: 'full'

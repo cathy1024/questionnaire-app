@@ -1,3 +1,8 @@
+export interface TypeInfo {
+    name: string,
+    id: number
+}
+
 export interface Option {
     optionId: number;
     optionContent: string;
@@ -9,7 +14,7 @@ export interface Question {
     name: string;
     score: number;
     mustFill: boolean;
-    options: Option[];
+    options?: Option[];
 }
 export interface Questionnaire {
     title: string;

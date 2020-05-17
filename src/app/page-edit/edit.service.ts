@@ -27,8 +27,9 @@ export class EditService {
 
   // 获取问卷列表(包括默认数据和localStorage)中最大的问卷id
   getMaxId () {
-    const localData = this.storageService.get('questionnaireList');
+    let localData = this.storageService.get('questionnaireList');
     const defaultData = DefaultData;
+    localData = localData ? localData : [];
     const allData = [...localData, ...defaultData];
     let maxId = 0;
     allData.forEach(d => {

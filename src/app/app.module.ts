@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
@@ -9,6 +10,7 @@ import { PageListComponent } from './page-list/page-list.component';
 import { PageEditComponent } from './page-edit/page-edit.component';
 import { PageEditModule } from './page-edit/page-edit.module';
 import { PageViewComponent } from './page-view/page-view.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { PageViewComponent } from './page-view/page-view.component';
     HttpClientModule,
     BrowserModule,
     PageEditModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

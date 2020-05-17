@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 :focus {
     outline: 0;
 }
@@ -24,3 +26,40 @@
     padding: 15px;
     height: 100%;
 }
+
+.qst-item-hd {
+    margin-bottom: 10px;
+    .name-input {
+        border: 1px solid transparent;
+        border-radius: 3px;
+        padding: 5px 10px;
+        &.active {
+            border-color: #bbb;
+        }
+    }
+}
+.qst-item-content {
+    & > ul {
+        margin-left: 25px;
+    }
+}
+
+// icon
+.icon-del {
+    display: inline-block;
+    &:before, &:after {
+        content: '';
+        display: block;
+        width: 16px;
+        border-top: 1px solid #666;
+    }
+    &:before {
+        transform: rotate(45deg);
+    }
+    &:after {
+        transform: rotate(-45deg);
+    }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
