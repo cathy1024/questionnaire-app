@@ -4,7 +4,7 @@
     </div>
     <div class="col-8">
         <div class="items-board">
-          <qst-board [qstList]="qstList"></qst-board>
+          <qst-board [qstList]="qstList" (delItemEvent)="onDeleteItem($event)" (copyItemEvent)="onCopyItem($event)"></qst-board>
         </div>
     </div>
     <div class="col-2">

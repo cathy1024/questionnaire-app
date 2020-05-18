@@ -1,12 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { Question } from '../../QuestionType';
-
-export interface DialogData {
-  animal: string;
-  name: string;
-}
 
 @Component({
   selector: 'qst-board',
@@ -26,6 +22,7 @@ export class QstBoardComponent implements OnInit {
   }
 
   @Output() delItemEvent = new EventEmitter<string>();
+  @Output() copyItemEvent = new EventEmitter<string>();
 
   qstItemClick (item) {
     this.activeItem = item.id;
@@ -35,17 +32,28 @@ export class QstBoardComponent implements OnInit {
   deleteItem (item): void {
     // 确定删除提示
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '320px',
-      data: { name: this.qstName, animal: this.animal }
+      width: '320px'
     })
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('confirm已关闭');
       console.log(result);
+      if (result === 'yes') {
+        const id = item.id;
+        this.delItemEvent.emit(id);
+      }
     })
+  }
 
-    const id = item.id;
-    this.delItemEvent.emit(id);
+  // 复制题目
+  copyItem (item): void {
+    let obj = JSON.parse(JSON.stringify(item));
+    obj.id = new Date().getTime();
+    this.copyItemEvent.emit(obj);
+  }
+
+  // 拖动题目
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.qstList, event.previousIndex, event.currentIndex);
   }
 
 }
@@ -54,7 +62,7 @@ export class QstBoardComponent implements OnInit {
 @Component({
   selector: 'dialog-overview-example-dialog',
   template: `
-    <h1 mat-dialog-title>Hi {{data.name}}</h1>
+    <h1 mat-dialog-title>删除提示</h1>
     <div mat-dialog-content>确定删除？</div>
     <div mat-dialog-actions>
       <button mat-button (click)="onCancel()">取消</button>
@@ -65,13 +73,13 @@ export class QstBoardComponent implements OnInit {
 export class DialogOverviewExampleDialog {
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   onCancel(): void {
-    this.dialogRef.close();
+    this.dialogRef.close('no');
   }
   onConfirm(): void {
-    this.dialogRef.close();
+    this.dialogRef.close('yes');
   }
 }

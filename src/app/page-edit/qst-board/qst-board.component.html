@@ -13,27 +13,40 @@
             </div>
         </div>
         <div class="qst-main__bd">
-            <div class="qst-list">
-                <div class="qst-item" [class]="activeItem==item.id ? 'active' : ''" *ngFor="let item of qstList" (click)="qstItemClick(item)">
-                    <div [ngSwitch]="item.typeId">
-                        <qst-radio *ngSwitchCase="1" [qst]="item" [active]="activeItem==item.id"></qst-radio>
-                        <qst-checkbox *ngSwitchCase="2" [qst]="item" [active]="activeItem==item.id"></qst-checkbox>
-                        <qst-text *ngSwitchCase="3" [qst]="item" [active]="activeItem==item.id"></qst-text>
-                        <qst-textarea *ngSwitchCase="4" [qst]="item" [active]="activeItem==item.id"></qst-textarea>
-                        <qst-desc *ngSwitchCase="5" [qst]="item" [active]="activeItem==item.id"></qst-desc>
-                        <qst-sort *ngSwitchCase="6" [qst]="item" [active]="activeItem==item.id"></qst-sort>
-                        <qst-score *ngSwitchCase="7" [qst]="item" [active]="activeItem==item.id"></qst-score>
-                        <qst-matrix *ngSwitchCase="8" [qst]="item" [active]="activeItem==item.id"></qst-matrix>
-                        <qst-pic *ngSwitchCase="9" [qst]="item" [active]="activeItem==item.id"></qst-pic>
-                        <qst-file *ngSwitchCase="10" [qst]="item" [active]="activeItem==item.id"></qst-file>
-                        <qst-select *ngSwitchCase="11" [qst]="item" [active]="activeItem==item.id"></qst-select>
-                        <qst-date *ngSwitchCase="12" [qst]="item" [active]="activeItem==item.id"></qst-date>
-                        <qst-cascader *ngSwitchCase="13" [qst]="item" [active]="activeItem==item.id"></qst-cascader>
-                        <qst-proportion *ngSwitchCase="14" [qst]="item" [active]="activeItem==item.id"></qst-proportion>
-                        <qst-fill *ngSwitchCase="16" [qst]="item" [active]="activeItem==item.id"></qst-fill>
+            <div class="qst-list" cdkDropList (cdkDropListDropped)="drop($event)">
+                <div class="qst-item-wrap" *ngFor="let item of qstList" (click)="qstItemClick(item)" cdkDrag>
+                    <div class="qst-main-placeholder" *cdkDragPlaceholder></div>
+                    <div class="qst-item" [class]="activeItem==item.id ? 'active' : ''">
+                        <div [ngSwitch]="item.typeId">
+                            <qst-radio *ngSwitchCase="1" [qst]="item" [active]="activeItem==item.id"></qst-radio>
+                            <qst-checkbox *ngSwitchCase="2" [qst]="item" [active]="activeItem==item.id"></qst-checkbox>
+                            <qst-text *ngSwitchCase="3" [qst]="item" [active]="activeItem==item.id"></qst-text>
+                            <qst-textarea *ngSwitchCase="4" [qst]="item" [active]="activeItem==item.id"></qst-textarea>
+                            <qst-desc *ngSwitchCase="5" [qst]="item" [active]="activeItem==item.id"></qst-desc>
+                            <qst-sort *ngSwitchCase="6" [qst]="item" [active]="activeItem==item.id"></qst-sort>
+                            <qst-score *ngSwitchCase="7" [qst]="item" [active]="activeItem==item.id"></qst-score>
+                            <qst-matrix *ngSwitchCase="8" [qst]="item" [active]="activeItem==item.id"></qst-matrix>
+                            <qst-pic *ngSwitchCase="9" [qst]="item" [active]="activeItem==item.id"></qst-pic>
+                            <qst-file *ngSwitchCase="10" [qst]="item" [active]="activeItem==item.id"></qst-file>
+                            <qst-select *ngSwitchCase="11" [qst]="item" [active]="activeItem==item.id"></qst-select>
+                            <qst-date *ngSwitchCase="12" [qst]="item" [active]="activeItem==item.id"></qst-date>
+                            <qst-cascader *ngSwitchCase="13" [qst]="item" [active]="activeItem==item.id"></qst-cascader>
+                            <qst-proportion *ngSwitchCase="14" [qst]="item" [active]="activeItem==item.id"></qst-proportion>
+                            <qst-fill *ngSwitchCase="16" [qst]="item" [active]="activeItem==item.id"></qst-fill>
+                        </div>
+                        <span class="item-action">
+                            <div class="example-handle" cdkDragHandle>
+                                <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                </svg>
+                            </div>
+                            <!-- 复制 -->
+                            <span title="复制题目" (click)="copyItem(item)">复制</span> &nbsp;
+                            <!-- 删除图标 -->
+                            <span class="span-del" title="删除题目" (click)="deleteItem(item)"><i class="icon-del"></i></span>
+                        </span>
                     </div>
-                    <!-- 删除图标 -->
-                    <span class="span-del" title="删除题目" (click)="deleteItem(item)"><i class="icon-del"></i></span>
                 </div>
             </div>
         </div>

@@ -13,14 +13,15 @@ import { QstBoardComponent } from './qst-board/qst-board.component';
 import { QstRadioComponent, QstCheckboxComponent, QstTextComponent, QstTextareaComponent, QstCascaderComponent, QstDateComponent, QstDescComponent, QstFileComponent, QstFillComponent, QstMatrixComponent, QstPicComponent, QstProportionComponent, QstScoreComponent, QstSelectComponent, QstSortComponent } from './qst-board/components/qst.type.component';
 
 import {MatDialogModule} from '@angular/material/dialog';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [ItemsComponent, StylesComponent, SettingComponent, SidebarComponent, SubSidebarComponent, QstBoardComponent, QstRadioComponent, QstCheckboxComponent, QstTextComponent, QstTextareaComponent, QstCascaderComponent, QstDateComponent, QstDescComponent, QstFileComponent, QstFillComponent, QstMatrixComponent, QstPicComponent, QstProportionComponent, QstScoreComponent, QstSelectComponent, QstSortComponent],
   imports: [
     CommonModule,
     PageEditRoutingModule,
-    FormsModule
+    FormsModule, MatDialogModule, DragDropModule
   ],
-  exports: [SidebarComponent, MatDialogModule]
+  exports: [SidebarComponent, MatDialogModule, DragDropModule]
 })
 export class PageEditModule { }

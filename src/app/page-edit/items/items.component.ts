@@ -45,4 +45,17 @@ export class ItemsComponent implements OnInit {
     return qst;
   }
 
+  // 删除题目
+  onDeleteItem(id) {
+    let qstList = this.qstList.filter(item => {
+      return item.id !== id;
+    });
+    this.qstList = qstList;
+  }
+
+  // 复制题目
+  onCopyItem(item){
+    this.qstList.push(item);
+  }
+
 }
