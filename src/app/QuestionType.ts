@@ -18,6 +18,7 @@ export interface Question {
 }
 export interface Questionnaire {
     title: string;
+    index?: number;
     describe: string;
     id: number;
     createDate: Date;

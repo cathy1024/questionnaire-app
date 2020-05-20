@@ -1,0 +1,68 @@
+
+/* 问卷画板 */
+.items-board {
+    padding: 25px 15px;
+    min-height: 100%;
+}
+
+.setting-board {
+    background-color: white;
+    padding: 15px;
+    height: 100%;
+}
+
+.qst-item-hd {
+    margin-bottom: 10px;
+    .name-input {
+        border: 1px solid transparent;
+        border-radius: 3px;
+        padding: 5px 10px;
+        &.active {
+            border-color: #bbb;
+        }
+    }
+}
+.qst-item-content {
+    & > ul {
+        margin-left: 25px;
+    }
+}
+
+// icon
+.icon-del {
+    display: inline-block;
+    &:before, &:after {
+        content: '';
+        display: block;
+        width: 16px;
+        border-top: 1px solid #666;
+    }
+    &:before {
+        transform: rotate(45deg);
+    }
+    &:after {
+        transform: rotate(-45deg);
+    }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+nz-layout.edit-layout {
+    height: 100%;
+    overflow-y: auto;
+}
+nz-sider.sub-sidebar-wrap {    
+    background-color: #ffffff;
+    padding: 20px;
+    background-color: white;
+    height: calc(100vh - 54px);
+    overflow-y: auto;
+}
+nz-sider.setting-board {
+    background-color: #ffffff;
+    padding: 20px;
+    background-color: white;
+    height: calc(100vh - 54px);
+    overflow-y: auto;
+}

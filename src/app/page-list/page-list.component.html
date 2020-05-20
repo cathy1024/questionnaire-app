@@ -1,29 +1,22 @@
-<div class="container">
-    <header class="header clearfix">
-        <h3 class="h3">问卷管理</h3>
-        <button type="button" class="btn btn-success btn-add" routerLink="/create">创建问卷</button>
-    </header>
-    <section>
-        <div class="list-group">
-            <li *ngFor="let item of listData" class="list-group-item">
-                <div class="row">
-                    <div class="col-sm-8"><a [routerLink]="['/view', item.id]">{{item.title}}</a></div>
-                    <div class="col-sm-4 text-right">
-                        <span class="op-btn btn-edit" [routerLink]="['/edit', item.id]" title="编辑">
-                            <svg class="bi bi-pencil-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" clip-rule="evenodd"/>
-                              </svg>
-                        </span>
-                        <span class="op-btn btn-delete" title="删除">
-                          <svg class="bi bi-trash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" clip-rule="evenodd"/>
-                          </svg>
-                        </span>
-                    </div>
-                </div>
+<nz-layout class="wrap">
+    <nz-header class="header clearfix">
+        <h2 class="h2">问卷管理</h2>
+        <button nz-button nzType="primary" class="btn-add" routerLink="/create"><i nz-icon nzType="plus" nzTheme="outline"></i>创建问卷</button>
+    </nz-header>
+    <nz-content>
+        <ul nz-list [nzDataSource]="listData" nzBordered>
+            <li nz-list-item *ngFor="let item of listData">
+                <span class="item-content">
+                    <span class="item-num">{{item.index + 1}}.</span>
+                    <a [routerLink]="['/view', item.id]">{{item.title}}</a>
+                </span>
+                <span class="item-actions">
+                    <a [routerLink]="['/edit', item.id]"><i nz-icon nzType="form" nzTheme="outline"></i></a>
+                    <a (click)="copyItem(item)"><i nz-icon nzType="copy" nzTheme="outline"></i></a>
+                    <a class="btn-delete" nz-popconfirm nzPopconfirmTitle="确定删除？" nzPopconfirmPlacement="bottom" (nzOnConfirm)="delConfirm(item.id)"><i nz-icon nzType="close" nzTheme="outline"></i></a>
+                </span>
             </li>
-        </div>
-    </section>
-</div>
+        </ul>
+        <nz-pagination [nzHideOnSinglePage]="true" ([nzPageIndex])="pageIndex" [nzTotal]="allData.length" [nzPageSize]="pageSize" (nzPageIndexChange)="onPageIndexChange($event)"></nz-pagination>
+    </nz-content>
+</nz-layout>

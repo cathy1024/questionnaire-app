@@ -58,6 +58,7 @@ export class PageEditComponent implements OnInit {
     const id = this.editService.getMaxId();
     let dataObj: Questionnaire = {
       title: "问卷名称id",
+      index: 0,
       describe: '问卷描述id',
       id: id,
       createDate: new Date(),

@@ -15,12 +15,15 @@ import { QstRadioComponent, QstCheckboxComponent, QstTextComponent, QstTextareaC
 import {MatDialogModule} from '@angular/material/dialog';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
+import { DemoNgZorroAntdModule } from '../ng-zorro-antd.module';
+
 @NgModule({
   declarations: [ItemsComponent, StylesComponent, SettingComponent, SidebarComponent, SubSidebarComponent, QstBoardComponent, QstRadioComponent, QstCheckboxComponent, QstTextComponent, QstTextareaComponent, QstCascaderComponent, QstDateComponent, QstDescComponent, QstFileComponent, QstFillComponent, QstMatrixComponent, QstPicComponent, QstProportionComponent, QstScoreComponent, QstSelectComponent, QstSortComponent],
   imports: [
     CommonModule,
     PageEditRoutingModule,
-    FormsModule, MatDialogModule, DragDropModule
+    FormsModule, MatDialogModule, DragDropModule,
+    DemoNgZorroAntdModule
   ],
   exports: [SidebarComponent, MatDialogModule, DragDropModule]
 })
