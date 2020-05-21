@@ -1,3 +1,5 @@
+@import '../../../assets/css/styles.less';
+
 :host {
 }
 .qst-board {
@@ -19,7 +21,7 @@
                 font-size: 16px;
                 &:focus {
                     box-shadow: 0 0 6px 1px rgba(125, 125, 125, 0.3);
-                    border-color: #28a745;
+                    border-color: @primary-color;
                 }
             }
         }
@@ -34,7 +36,7 @@
                 font-size: 14px;
                 &:focus {
                     box-shadow: 0 0 6px 1px rgba(125, 125, 125, 0.3);
-                    border-color: #28a745;
+                    border-color: @primary-color;
                 }
             }
         }
@@ -57,7 +59,7 @@
     }
     &.active {
         box-shadow: 0 0 6px 1px rgba(125, 125, 125, 0.3);
-        border-color: #28a745;
+        border-color: @primary-color;
     }
     .item-actions {
         position: absolute;

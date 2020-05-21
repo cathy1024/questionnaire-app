@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core'
-import { Question } from 'src/app/QuestionType';
+import { Question, Option } from 'src/app/QuestionType';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 /**单选题 1 */
 @Component({
@@ -7,20 +8,60 @@ import { Question } from 'src/app/QuestionType';
     template: `
         <div class="qst-item-hd">
             <input class="name-input" [class]="active ? 'active':''" [(ngModel)]="qst.name" name="name">
-            <span *ngIf="qst.mustFill">必填</span>
+            <nz-tag nzColor="red" *ngIf="qst.mustFill">必填</nz-tag>
+            <nz-tag nzColor="gray">{{qst.score}}分</nz-tag>
         </div>
         <div class="qst-item-content">
             <ul>
-                <li *ngFor="let item of qst.options">
-                    <label><input type="radio" name="option" [value]="item.optionId" /> {{item.optionContent}}</label>
+                <li class="qst-option" *ngFor="let item of qst.options">
+                    <div class="qst-option-content">
+                        <label nz-radio></label>
+                        <input nz-input [nzSize]="'small'" [(ngModel)]="item.optionContent" />
+                    </div>
+                    <div class="qst-option-action">
+                        <i nz-icon nzType="close" nzTheme="outline" (click)="onDeleteOption(item.optionId)"></i>
+                    </div>
                 </li>
             </ul>
+            <div class="qst-options-actions">
+                <i nz-icon nzType="plus-square" nzTheme="outline" title="添加选项" (click)="onAddOption()"></i>
+            </div>
         </div>
     `
 })
 export class QstRadioComponent {
     @Input() qst: Question;
     @Input() active: boolean;
+
+    constructor(
+        private message: NzMessageService
+    ) {
+
+    }
+
+    // 添加选项
+    onAddOption(): void {
+        const t = new Date().getTime();
+        const option: Option = {
+            optionId: t,
+            optionContent: '选项' + t
+        };
+        this.qst.options.push(option);
+        this.message.success('添加成功');
+    }
+
+    // 删除选项
+    onDeleteOption(optionId: number): void {
+        const options = this.qst.options;
+        if (options.length <= 2) {
+            this.message.warning('最少保留2个选项');
+            return;
+        }
+        this.qst.options = options.filter(item => {
+            return item.optionId !== optionId;
+        });
+        this.message.success('删除成功');
+    }
 }
 
 
@@ -30,20 +71,60 @@ export class QstRadioComponent {
     template: `
         <div class="qst-item-hd">
             <input class="name-input" type="text" [class]="active ? 'active':''" [value]="qst.name">
-            <span *ngIf="qst.mustFill">必填</span>
+            <nz-tag nzColor="red" *ngIf="qst.mustFill">必填</nz-tag>
+            <nz-tag nzColor="gray">{{qst.score}}分</nz-tag>
         </div>
         <div class="qst-item-content">
             <ul>
-                <li *ngFor="let item of qst.options">
-                    <label><input type="checkbox" name="option" [value]="item.optionId" /> {{item.optionContent}}</label>
+                <li class="qst-option" *ngFor="let item of qst.options">
+                    <div class="qst-option-content">
+                        <label nz-checkbox></label>&nbsp;&nbsp;
+                        <input nz-input [nzSize]="'small'" [(ngModel)]="item.optionContent" />
+                    </div>
+                    <div class="qst-option-action">
+                        <i nz-icon nzType="close" nzTheme="outline" (click)="onDeleteOption(item.optionId)"></i>
+                    </div>
                 </li>
             </ul>
+            <div class="qst-options-actions">
+                <i nz-icon nzType="plus-square" nzTheme="outline" title="添加选项" (click)="onAddOption()"></i>
+            </div>
         </div>
     `
 })
 export class QstCheckboxComponent {
     @Input() qst: Question;
     @Input() active: boolean;
+
+    constructor(
+        private message: NzMessageService
+    ) {
+
+    }
+
+    // 添加选项
+    onAddOption() {
+        const t = new Date().getTime();
+        const option: Option = {
+            optionId: t,
+            optionContent: '选项' + t
+        };
+        this.qst.options.push(option);
+        this.message.success('添加成功');
+    }
+
+    // 删除选项
+    onDeleteOption(optionId: number): void {
+        const options = this.qst.options;
+        if (options.length <= 2) {
+            this.message.warning('最少保留2个选项');
+            return;
+        }
+        this.qst.options = options.filter(item => {
+            return item.optionId !== optionId;
+        });
+        this.message.success('删除成功');
+    }
 }
 
 
@@ -53,10 +134,11 @@ export class QstCheckboxComponent {
     template: `
         <div class="qst-item-hd">
             <input class="name-input" [class]="active ? 'active':''" [(ngModel)]="qst.name" name="name">
-            <span *ngIf="qst.mustFill">必填</span>
+            <nz-tag nzColor="red" *ngIf="qst.mustFill">必填</nz-tag>
+            <nz-tag nzColor="gray">{{qst.score}}分</nz-tag>
         </div>
         <div class="qst-item-content">
-            <input ([ngModel])="value" />
+            <input nz-input ([ngModel])="value" />
         </div>
     `
 })
@@ -74,10 +156,11 @@ export class QstTextComponent {
     template: `
         <div class="qst-item-hd">
             <input class="name-input" [class]="active ? 'active':''" [(ngModel)]="qst.name" name="name">
-            <span *ngIf="qst.mustFill">必填</span>
+            <nz-tag nzColor="red" *ngIf="qst.mustFill">必填</nz-tag>
+            <nz-tag nzColor="gray">{{qst.score}}分</nz-tag>
         </div>
         <div class="qst-item-content">
-            <textarea ([ngModel])="value"></textarea>
+            <textarea rows="4" nz-input ([ngModel])="value"></textarea>
         </div>
     `
 })
@@ -95,10 +178,10 @@ export class QstTextareaComponent {
     selector: 'qst-desc',
     template: `
         <div class="qst-item-hd">
-            <input class="name-input" [class]="active ? 'active':''" [(ngModel)]="qst.name" name="name">
-            <span *ngIf="qst.mustFill">必填</span>
+            <textarea rows="2" nz-input [class]="active ? 'active':''" [(ngModel)]="qst.name" name="name"></textarea>
         </div>
-    `
+    `,
+    styles: ['.qst-item-hd { padding-top: 30px; }']
 })
 export class QstDescComponent {
     @Input() qst: Question;
@@ -115,10 +198,23 @@ export class QstDescComponent {
     template: `
         <div class="qst-item-hd">
             <input class="name-input" [class]="active ? 'active':''" [(ngModel)]="qst.name" name="name">
-            <span *ngIf="qst.mustFill">必填</span>
+            <nz-tag nzColor="red" *ngIf="qst.mustFill">必填</nz-tag>
+            <nz-tag nzColor="gray">{{qst.score}}分</nz-tag>
         </div>
         <div class="qst-item-content">
-            <textarea ([ngModel])="value"></textarea>
+            <ul>
+                <li class="qst-option" *ngFor="let item of qst.options">
+                    <div class="qst-option-content">
+                        <input nz-input [nzSize]="'small'" [(ngModel)]="item.optionContent" />
+                    </div>
+                    <div class="qst-option-action">
+                        <i nz-icon nzType="close" nzTheme="outline" (click)="onDeleteOption(item.optionId)"></i>
+                    </div>
+                </li>
+            </ul>
+            <div class="qst-options-actions">
+                <i nz-icon nzType="plus-square" nzTheme="outline" title="添加选项" (click)="onAddOption()"></i>
+            </div>
         </div>
     `
 })
@@ -127,6 +223,36 @@ export class QstSortComponent {
     @Input() active: boolean;
 
     value;
+
+    constructor(
+        private message: NzMessageService
+    ) {
+
+    }
+
+    // 添加选项
+    onAddOption() {
+        const t = new Date().getTime();
+        const option: Option = {
+            optionId: t,
+            optionContent: '选项' + t
+        };
+        this.qst.options.push(option);
+        this.message.success('添加成功');
+    }
+
+    // 删除选项
+    onDeleteOption(optionId: number): void {
+        const options = this.qst.options;
+        if (options.length <= 2) {
+            this.message.warning('最少保留2个选项');
+            return;
+        }
+        this.qst.options = options.filter(item => {
+            return item.optionId !== optionId;
+        });
+        this.message.success('删除成功');
+    }
 }
 
 
@@ -137,7 +263,8 @@ export class QstSortComponent {
     template: `
         <div class="qst-item-hd">
             <input class="name-input" [class]="active ? 'active':''" [(ngModel)]="qst.name" name="name">
-            <span *ngIf="qst.mustFill">必填</span>
+            <nz-tag nzColor="red" *ngIf="qst.mustFill">必填</nz-tag>
+            <nz-tag nzColor="gray">{{qst.score}}分</nz-tag>
         </div>
         <div class="qst-item-content">
             <textarea ([ngModel])="value"></textarea>
@@ -159,7 +286,8 @@ export class QstScoreComponent {
     template: `
         <div class="qst-item-hd">
             <input class="name-input" [class]="active ? 'active':''" [(ngModel)]="qst.name" name="name">
-            <span *ngIf="qst.mustFill">必填</span>
+            <nz-tag nzColor="red" *ngIf="qst.mustFill">必填</nz-tag>
+            <nz-tag nzColor="gray">{{qst.score}}分</nz-tag>
         </div>
         <div class="qst-item-content">
             <textarea ([ngModel])="value"></textarea>
@@ -181,7 +309,8 @@ export class QstMatrixComponent {
     template: `
         <div class="qst-item-hd">
             <input class="name-input" [class]="active ? 'active':''" [(ngModel)]="qst.name" name="name">
-            <span *ngIf="qst.mustFill">必填</span>
+            <nz-tag nzColor="red" *ngIf="qst.mustFill">必填</nz-tag>
+            <nz-tag nzColor="gray">{{qst.score}}分</nz-tag>
         </div>
         <div class="qst-item-content">
             <textarea ([ngModel])="value"></textarea>
@@ -203,7 +332,8 @@ export class QstPicComponent {
     template: `
         <div class="qst-item-hd">
             <input class="name-input" [class]="active ? 'active':''" [(ngModel)]="qst.name" name="name">
-            <span *ngIf="qst.mustFill">必填</span>
+            <nz-tag nzColor="red" *ngIf="qst.mustFill">必填</nz-tag>
+            <nz-tag nzColor="gray">{{qst.score}}分</nz-tag>
         </div>
         <div class="qst-item-content">
             <textarea ([ngModel])="value"></textarea>
@@ -225,7 +355,8 @@ export class QstFileComponent {
     template: `
         <div class="qst-item-hd">
             <input class="name-input" [class]="active ? 'active':''" [(ngModel)]="qst.name" name="name">
-            <span *ngIf="qst.mustFill">必填</span>
+            <nz-tag nzColor="red" *ngIf="qst.mustFill">必填</nz-tag>
+            <nz-tag nzColor="gray">{{qst.score}}分</nz-tag>
         </div>
         <div class="qst-item-content">
             <textarea ([ngModel])="value"></textarea>
@@ -247,7 +378,8 @@ export class QstSelectComponent {
     template: `
         <div class="qst-item-hd">
             <input class="name-input" [class]="active ? 'active':''" [(ngModel)]="qst.name" name="name">
-            <span *ngIf="qst.mustFill">必填</span>
+            <nz-tag nzColor="red" *ngIf="qst.mustFill">必填</nz-tag>
+            <nz-tag nzColor="gray">{{qst.score}}分</nz-tag>
         </div>
         <div class="qst-item-content">
             <textarea ([ngModel])="value"></textarea>
@@ -269,7 +401,8 @@ export class QstDateComponent {
     template: `
         <div class="qst-item-hd">
             <input class="name-input" [class]="active ? 'active':''" [(ngModel)]="qst.name" name="name">
-            <span *ngIf="qst.mustFill">必填</span>
+            <nz-tag nzColor="red" *ngIf="qst.mustFill">必填</nz-tag>
+            <nz-tag nzColor="gray">{{qst.score}}分</nz-tag>
         </div>
         <div class="qst-item-content">
             <textarea ([ngModel])="value"></textarea>
@@ -291,7 +424,8 @@ export class QstCascaderComponent {
     template: `
         <div class="qst-item-hd">
             <input class="name-input" [class]="active ? 'active':''" [(ngModel)]="qst.name" name="name">
-            <span *ngIf="qst.mustFill">必填</span>
+            <nz-tag nzColor="red" *ngIf="qst.mustFill">必填</nz-tag>
+            <nz-tag nzColor="gray">{{qst.score}}分</nz-tag>
         </div>
         <div class="qst-item-content">
             <textarea ([ngModel])="value"></textarea>
@@ -306,14 +440,14 @@ export class QstProportionComponent {
 }
 
 
-
 /**分行填空题 16 */
 @Component({
     selector: 'qst-fill',
     template: `
         <div class="qst-item-hd">
             <input class="name-input" [class]="active ? 'active':''" [(ngModel)]="qst.name" name="name">
-            <span *ngIf="qst.mustFill">必填</span>
+            <nz-tag nzColor="red" *ngIf="qst.mustFill">必填</nz-tag>
+            <nz-tag nzColor="gray">{{qst.score}}分</nz-tag>
         </div>
         <div class="qst-item-content">
             <textarea ([ngModel])="value"></textarea>

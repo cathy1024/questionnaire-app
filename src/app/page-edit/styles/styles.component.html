@@ -1,7 +1,26 @@
-<div class="row">
-    <div class="col-2 sub-sidebar-wrap">
-        <sub-sidebar></sub-sidebar>
-    </div>
-    <div class="col-8">2</div>
-    <div class="col-2">3</div>
-</div>
+<nz-layout class="edit-layout">
+    <nz-sider class="sub-sidebar-wrap">
+        <sub-sidebar [items]="styleMenu" (newItemEvent)="getSubSidebar($event)"></sub-sidebar>
+    </nz-sider>
+    <nz-content>
+        <div class="items-board">
+            外观
+        </div>
+    </nz-content>
+    <nz-sider class="nz-sider-setting">
+        <div class="setting-board" hidden>
+            <h3 class="setting-board-title">外观设置</h3>
+            <div class="setting-board-item" nz-row nzJustify="space-between">
+                <label nz-col>题目分值</label>
+                <div nz-col>
+                    
+                </div>
+            </div>
+            <div class="setting-board-item" nz-row nzJustify="space-between">
+                <label nz-col>是否必填</label>
+                
+            </div>
+        </div>
+    </nz-sider>
+</nz-layout>
+      

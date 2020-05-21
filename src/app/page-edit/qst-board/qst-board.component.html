@@ -35,9 +35,7 @@
                             <qst-fill *ngSwitchCase="16" [qst]="item" [active]="activeItem==item.id"></qst-fill>
                         </div>
                         <span class="item-actions">
-                            <span class="icon-move" cdkDragHandle title="拖拽排序">
-                                <svg t="1589955336900" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2657" width="18" height="18"><path d="M448 0l-192 192 128 0 0 192-192 0 0-128-192 192 192 192 0-128 192 0 0 192-128 0 192 192 192-192-128 0 0-192 192 0 0 128 192-192-192-192 0 128-192 0 0-192 128 0-192-192z" p-id="2658" fill="#999999"></path></svg>
-                            </span>
+                            <i nz-icon nzType="drag" nzTheme="outline" cdkDragHandle title="拖拽排序"></i>
                             <!-- 复制 -->
                             <i nz-icon nzType="copy" (click)="copyItem(item)" title="复制题目" nzTheme="outline"></i>
                             <!-- 删除图标 -->

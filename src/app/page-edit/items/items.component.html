@@ -4,10 +4,22 @@
   </nz-sider>
   <nz-content>
     <div class="items-board">
-      <qst-board [qstList]="qstList" (delItemEvent)="onDeleteItem($event)" (copyItemEvent)="onCopyItem($event)"></qst-board>
+      <qst-board [qstList]="qstList" (delItemEvent)="onDeleteItem($event)" (copyItemEvent)="onCopyItem($event)" (getActiveItem)="onGetActiveItem($event)"></qst-board>
     </div>
   </nz-content>
-  <nz-sider class="setting-board">
-    题型设置
+  <nz-sider class="nz-sider-setting">
+    <div *ngIf="activeItem" class="setting-board">
+      <h3 class="setting-board-title">题型设置</h3>
+      <div class="setting-board-item" nz-row nzJustify="space-between">
+        <label nz-col>题目分值</label>
+        <div nz-col>
+            <input nz-input nzSize="small" [(ngModel)]="scoreValue" />
+        </div>
+      </div>
+      <div class="setting-board-item" nz-row nzJustify="space-between">
+        <label nz-col>是否必填</label>
+        <nz-switch nz-col [(ngModel)]="isMustFill"></nz-switch>
+      </div>
+    </div>
   </nz-sider>
 </nz-layout>

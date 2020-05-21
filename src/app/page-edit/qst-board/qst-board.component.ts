@@ -25,9 +25,11 @@ export class QstBoardComponent implements OnInit {
 
   @Output() delItemEvent = new EventEmitter<string>();
   @Output() copyItemEvent = new EventEmitter<string>();
+  @Output() getActiveItem = new EventEmitter<string>();
 
   qstItemClick (item) {
     this.activeItem = item.id;
+    this.getActiveItem.emit(item);
   }
 
   // 删除题目 确定

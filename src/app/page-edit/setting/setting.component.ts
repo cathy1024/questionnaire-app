@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { SettingMenu } from './setting.config';
+
+interface menu {
+  name: string,
+  id: number
+}
 
 @Component({
   selector: 'app-setting',
@@ -6,10 +12,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./setting.component.less']
 })
 export class SettingComponent implements OnInit {
+  settingMenu: menu[];
 
-  constructor() { }
+  constructor() { 
+    this.settingMenu = SettingMenu;
+  }
 
   ngOnInit(): void {
+  }
+
+  getSubSidebar (e) {
+    
   }
 
 }

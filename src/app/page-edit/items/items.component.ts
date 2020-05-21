@@ -10,8 +10,26 @@ import { TypeInfo, Question } from '../../QuestionType';
 export class ItemsComponent implements OnInit {
   questionType: TypeInfo[] = QuestionType;
   qstList = [];
+
+  activeItem: Question;
   constructor(
   ) { }
+
+  get isMustFill() {
+    return this.activeItem ? this.activeItem.mustFill : false;
+  }
+
+  set isMustFill(v) {
+    this.activeItem.mustFill = v;
+  }
+
+  get scoreValue() {
+    return this.activeItem ? this.activeItem.score : 0;
+  }
+
+  set scoreValue(v) {
+    this.activeItem.score = v;
+  }
 
   ngOnInit(): void {
 
@@ -37,7 +55,8 @@ export class ItemsComponent implements OnInit {
     switch (typeId) {
       case 1:
       case 2:
-        qst.options = defaultOptions
+      case 6:
+        qst.options = JSON.parse(JSON.stringify(defaultOptions))
         break;
       default:
         break;
@@ -55,7 +74,13 @@ export class ItemsComponent implements OnInit {
 
   // 复制题目
   onCopyItem(item){
-    this.qstList.push(item);
+    this.qstList.push(JSON.parse(JSON.stringify(item)));
+  }
+
+  // 获取当前active题目
+  onGetActiveItem(item) {
+    console.log(item);
+    this.activeItem = item;
   }
 
 }
