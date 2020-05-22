@@ -11,14 +11,31 @@
     <div *ngIf="activeItem" class="setting-board">
       <h3 class="setting-board-title">题型设置</h3>
       <div class="setting-board-item" nz-row nzJustify="space-between">
-        <label nz-col>题目分值</label>
-        <div nz-col>
+        <label nz-col nzSpan="8">题目分值</label>
+        <div nz-col nzSpan="8">
             <input nz-input nzSize="small" [(ngModel)]="scoreValue" />
         </div>
       </div>
       <div class="setting-board-item" nz-row nzJustify="space-between">
-        <label nz-col>是否必填</label>
+        <label nz-col nzSpan="8">是否必填</label>
         <nz-switch nz-col [(ngModel)]="isMustFill"></nz-switch>
+      </div>
+      <!-- 评分题，图标，数量 -->
+      <div *ngIf="activeItem?.typeId == 7">
+        <div class="setting-board-item" nz-row nzJustify="space-between">
+          <label nz-col nzSpan="6">图标</label>
+          <span class="setting-rate-icons" nz-col nzSpan="12">
+              <i nz-icon nzType="star" nzTheme="outline" [class.active]="activeItem?.iconType==='star'" (click)="iconTypeChange('star')"></i>
+              <i nz-icon nzType="heart" nzTheme="outline" [class.active]="activeItem?.iconType==='heart'" (click)="iconTypeChange('heart')"></i>
+              <i nz-icon nzType="like" nzTheme="outline" [class.active]="activeItem?.iconType==='like'" (click)="iconTypeChange('like')"></i>
+          </span>
+        </div>
+        <div class="setting-board-item" nz-row nzJustify="space-between">
+          <label nz-col nzSpan="8">数量</label>
+          <span nz-col nzSpan="8">
+            <input nz-input nzSize="small" [(ngModel)]="maxOptions" />
+          </span>
+        </div>
       </div>
     </div>
   </nz-sider>

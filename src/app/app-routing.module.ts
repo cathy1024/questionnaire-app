@@ -3,17 +3,19 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { PageListComponent } from './page-list/page-list.component';
 import { PageViewComponent } from './page-view/page-view.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 
 
 const appRoutes: Routes = [
     {
-        path: '', redirectTo: '/list', pathMatch: 'full'
-    },
-    {
-        path: 'list', component: PageListComponent
+        path: '', component: PageListComponent
     },
     {
         path: 'view/:id', component: PageViewComponent
+    },
+    {
+        path: '**',
+        component: PageNotFoundComponent
     }
 ]
 

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { Question, Option } from 'src/app/QuestionType';
+import { Question, Option, MatrixOption } from 'src/app/QuestionType';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 /**单选题 1 */
@@ -266,8 +266,9 @@ export class QstSortComponent {
             <nz-tag nzColor="red" *ngIf="qst.mustFill">必填</nz-tag>
             <nz-tag nzColor="gray">{{qst.score}}分</nz-tag>
         </div>
-        <div class="qst-item-content">
-            <textarea ([ngModel])="value"></textarea>
+        <div class="qst-item-content" style="padding-left: 20px;">
+            <nz-rate [ngModel]="0" [nzCount]="qst.iconCount" [nzCharacter]="characterIcon"></nz-rate>
+            <ng-template #characterIcon><i nz-icon [nzType]="qst.iconType"></i></ng-template>
         </div>
     `
 })
@@ -290,15 +291,87 @@ export class QstScoreComponent {
             <nz-tag nzColor="gray">{{qst.score}}分</nz-tag>
         </div>
         <div class="qst-item-content">
-            <textarea ([ngModel])="value"></textarea>
+            <nz-table #basicTable [nzData]="matrixData" [nzFrontPagination]="false" [nzBordered]="true">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th *ngFor="let option of optionData" class="th-option-content">
+                            <input nz-input [(ngModel)]="option.optionContent" />
+                            <i class="icon-minus-circle" nz-icon nzType="minus-circle" nzTheme="outline"></i>
+                        </th>
+                        <th nzWidth="60px" nzAlign="center">
+                            <i nz-icon nzType="plus-square" nzTheme="outline" title="添加选项" (click)="onAddOption()"></i>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let matrix of matrixData">
+                        <td><input nz-input [(ngModel)]="matrix.matrixContent" /></td>
+                        <td *ngFor="let option of optionData" nzAlign="center">
+                            <label nz-radio></label>
+                        </td>
+                        <td nzAlign="center">
+                            <i nz-icon nzType="close" nzTheme="outline" title="删除题目"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+            <div class="qst-options-actions" style="margin-top: -18px;margin-left: 15px;">
+                <i nz-icon nzType="plus-square" nzTheme="outline" title="添加题目" (click)="onAddMatrixOption()"></i>
+            </div>
         </div>
-    `
+    `,
+    styles: [`
+        .icon-minus-circle {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            color: red;
+        }
+        .anticon-close {
+            color: red;
+        }
+    `]
 })
 export class QstMatrixComponent {
     @Input() qst: Question;
     @Input() active: boolean;
 
     value;
+
+    constructor(
+        private message: NzMessageService
+    ) {}
+
+    get matrixData() {
+        return this.qst.matrixOptions;
+    };
+
+    get optionData() {
+        return this.qst.options;
+    }    
+
+    // 添加选项
+    onAddOption(): void {
+        const t = new Date().getTime();
+        const option: Option = {
+            optionId: t,
+            optionContent: '选项' + t
+        };
+        this.qst.options.push(option);
+        this.message.success('添加成功');
+    }
+
+    // 添加题目
+    onAddMatrixOption(): void {
+        const t = new Date().getTime();
+        const matrix: MatrixOption = {
+            matrixId: t,
+            matrixContent: '题目' + t
+        };
+        this.qst.matrixOptions.push(matrix);
+        this.message.success('添加成功');
+    }
 }
 
 

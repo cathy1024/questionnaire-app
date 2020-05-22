@@ -8,6 +8,11 @@ export interface Option {
     optionContent: string;
 }
 
+export interface MatrixOption {
+    matrixId: number;
+    matrixContent: string;
+}
+
 export interface Question {
     id: number;
     typeId: number;
@@ -15,6 +20,9 @@ export interface Question {
     score: number;
     mustFill: boolean;
     options?: Option[];
+    iconCount?: number;
+    iconType?: string;
+    matrixOptions?: MatrixOption[];
 }
 export interface Questionnaire {
     title: string;

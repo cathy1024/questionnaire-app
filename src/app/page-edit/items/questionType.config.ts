@@ -1,4 +1,6 @@
-export const QuestionType =  [
+import { TypeInfo, Option, MatrixOption } from 'src/app/QuestionType';
+
+export const QuestionType: TypeInfo[] =  [
     {
         name: '单选题',
         id: 1
@@ -61,7 +63,7 @@ export const QuestionType =  [
     }
 ]
 
-export const defaultOptions = [
+export const defaultOptions: Option[] = [
     {
         optionId: 1,
         optionContent: '选项1'
@@ -69,5 +71,16 @@ export const defaultOptions = [
     {
         optionId: 2,
         optionContent: '选项2'
+    }
+]
+
+export const defaultMatrixOptions: MatrixOption[] = [
+    {
+        matrixId: 1,
+        matrixContent: '题目1'
+    },
+    {
+        matrixId: 2,
+        matrixContent: '题目2'
     }
 ]

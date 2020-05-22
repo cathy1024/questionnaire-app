@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionType, defaultOptions } from './questionType.config';
+import { QuestionType, defaultOptions, defaultMatrixOptions } from './questionType.config';
 import { TypeInfo, Question } from '../../QuestionType';
 
 @Component({
@@ -31,6 +31,14 @@ export class ItemsComponent implements OnInit {
     this.activeItem.score = v;
   }
 
+  get maxOptions() {
+    return this.activeItem ? this.activeItem.iconCount : 5
+  }
+
+  set maxOptions(v) {
+    this.activeItem.iconCount = v;
+  }
+
   ngOnInit(): void {
 
   }
@@ -58,6 +66,14 @@ export class ItemsComponent implements OnInit {
       case 6:
         qst.options = JSON.parse(JSON.stringify(defaultOptions))
         break;
+      case 7:
+        qst.iconCount = 5;
+        qst.iconType = 'star';
+        break;
+      case 8:
+        qst.options = JSON.parse(JSON.stringify(defaultOptions));
+        qst.matrixOptions = JSON.parse(JSON.stringify(defaultMatrixOptions));
+        break;
       default:
         break;
     }
@@ -70,6 +86,7 @@ export class ItemsComponent implements OnInit {
       return item.id !== id;
     });
     this.qstList = qstList;
+    this.activeItem = null;
   }
 
   // 复制题目
@@ -79,8 +96,12 @@ export class ItemsComponent implements OnInit {
 
   // 获取当前active题目
   onGetActiveItem(item) {
-    console.log(item);
     this.activeItem = item;
+  }
+
+  // 更改图标样式
+  iconTypeChange(iconType: string): void {
+    this.activeItem.iconType = iconType;
   }
 
 }

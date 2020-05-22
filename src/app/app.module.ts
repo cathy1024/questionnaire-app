@@ -10,6 +10,8 @@ import { PageListComponent } from './page-list/page-list.component';
 import { PageEditComponent } from './page-edit/page-edit.component';
 import { PageEditModule } from './page-edit/page-edit.module';
 import { PageViewComponent } from './page-view/page-view.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NZ_ICONS } from 'ng-zorro-antd/icon';
@@ -33,7 +35,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     AppComponent,
     PageListComponent,
     PageEditComponent,
-    PageViewComponent
+    PageViewComponent,
+    PageNotFoundComponent
   ],
   imports: [
     HttpClientModule,
