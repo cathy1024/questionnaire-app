@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, filter } from 'rxjs/operators';
 
 import { EditService } from './edit.service';
 import { Questionnaire } from '../QuestionType';
@@ -18,7 +18,11 @@ export class PageEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private editService: EditService
-  ) {}
+  ) {
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      console.log(111);
+    })
+  }
 
   ngOnInit(): void {
     // this.id = this.route.snapshot.params['id'];

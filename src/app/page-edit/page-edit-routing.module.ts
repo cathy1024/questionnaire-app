@@ -5,11 +5,13 @@ import { PageEditComponent } from './page-edit.component'
 import { ItemsComponent } from './items/items.component';
 import { StylesComponent } from './styles/styles.component';
 import { SettingComponent } from './setting/setting.component';
+// import { EditMenuService } from '';
 
 const routes: Routes = [
   {
     path: 'edit/:id',
     component: PageEditComponent,
+    // canActivate: [EditMenuService],
     children: [
       {
         path: 'items',

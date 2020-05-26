@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'sidebar',
@@ -10,9 +10,9 @@ export class SidebarComponent implements OnInit {
   iconColor: string = '#aaaaaa';
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    router: Router
   ) {    
-    console.log(this.route);
   }
 
   ngOnInit(): void {
